@@ -1,5 +1,8 @@
 import ImageWithFallback from './layout/ImageWIthFallback';
-import fallback from '../public/assets/placeholderBackdrop.png';
+import fallback from '../public/assets/images/placeholderBackdrop.png';
+import posterFallback from '../public/assets/images/placeholderPoster.png';
+import useWindowSize from '../hooks/useWindowSize';
+
 const MovieDetails = ({ movie }) => {
   const {
     poster_path,
@@ -13,17 +16,30 @@ const MovieDetails = ({ movie }) => {
     vote_count,
     overview,
   } = movie;
+  const { width } = useWindowSize();
+
   return (
     <div className='bg-white shadow-lg rounded-lg mx-auto max-w-5xl'>
-      <div className='flex'>
-        <ImageWithFallback
-          fallbackImage={fallback}
-          className='w-64 h-auto rounded-l-lg object-cover'
-          width={256}
-          height={384}
-          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-          alt={title}
-        />
+      <div className='flex flex-col md:flex-row'>
+        {width >= 768 ? (
+          <ImageWithFallback
+            fallbackImage={posterFallback}
+            className='w-64 h-auto rounded-l-lg object-cover'
+            width={500}
+            height={800}
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
+          />
+        ) : (
+          <ImageWithFallback
+            fallbackImage={fallback}
+            className='w-full h-auto object-cover mb-2 rounded-lg'
+            width={500}
+            height={800}
+            src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+            alt={title}
+          />
+        )}
         <div className='p-6'>
           <h2 className='text-2xl font-bold mb-2'>{title}</h2>
           <p className='text-sm text-gray-600 mb-4'>

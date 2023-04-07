@@ -2,10 +2,15 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import MovieCard from './MovieCard';
+import { Pagination } from '@mui/material';
+import useWindowSize from '../hooks/useWindowSize';
 
-const Board = ({ fetchFunction, queryKey }) => {
+const PAGE_COUNT = 100;
+
+const Board = ({ fetchFunction, queryKey, heading }) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const { page } = router.query;
@@ -20,16 +25,10 @@ const Board = ({ fetchFunction, queryKey }) => {
       keepPreviousData: true,
     });
 
-  const handleNextPage = () => {
+  const handleChange = (event, value) => {
     if (!isPreviousData) {
-      router.push({ query: { ...router.query, page: currentPage + 1 } });
+      router.push({ query: { ...router.query, page: value } });
     }
-  };
-
-  const handlePrevPage = () => {
-    router.push({
-      query: { ...router.query, page: Math.max(currentPage - 1, 1) },
-    });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -37,21 +36,20 @@ const Board = ({ fetchFunction, queryKey }) => {
 
   return (
     <div className='max-w-screen-lg mx-auto p-2'>
-      <div className='flex flex-wrap justify-evenly'>
+      <h1 className='text-4xl font-bold py-4 ml-6'>{heading}</h1>
+      <div className='flex flex-wrap justify-evenly gap-4'>
         {data.results &&
           data.results.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <MovieCard key={movie.id} movie={movie} screenSize={width} />
           ))}
       </div>
       <div className='flex justify-center items-center space-x-4 my-4'>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <span>Page {currentPage}</span>
-        <button onClick={handleNextPage} disabled={isPreviousData}>
-          Next
-        </button>
         {isFetching ? <span> Loading...</span> : null}{' '}
+        <Pagination
+          count={PAGE_COUNT}
+          page={currentPage}
+          onChange={handleChange}
+        />
       </div>
     </div>
   );

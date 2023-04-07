@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchMovieReviews } from '../helpers/tmdbAPI';
+import { fetchMovieReviews } from '../lib/tmdbAPI';
 
 const MovieReviews = ({ movieId }) => {
   const { data, isLoading, isError, error } = useQuery(

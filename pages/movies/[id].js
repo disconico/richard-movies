@@ -3,7 +3,7 @@ import MovieDetails from '../../components/MovieDetails';
 import MovieReviews from '../../components/MovieReviews';
 import { useRouter } from 'next/router';
 import { useQuery, QueryClient, dehydrate } from 'react-query';
-import { fetchMovieDetails } from '../../helpers/tmdbAPI';
+import { fetchMovieDetails } from '../../lib/tmdbAPI';
 
 const MovieDetailsPage = () => {
   const router = useRouter();

@@ -22,3 +22,8 @@ body {
 #__next {
   flex: 1 1 auto;
 }
+
+@font-face {
+  font-family: 'marker';
+  src: url(../public/assets/fonts/PermanentMarker-Regular.ttf);
+}
