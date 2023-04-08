@@ -24,7 +24,7 @@ const MovieCard = ({ movie, screenSize }) => {
      flex flex-col'
     >
       <Link href={`/movies/${movie.id}`} className='flex flex-col flex-grow'>
-        {screenSize >= 640 ? (
+        {screenSize >= 640 && (
           <ImageWithFallback
             fallbackImage={fallback}
             className='w-full h-auto object-cover mb-2 rounded-lg'
@@ -33,7 +33,8 @@ const MovieCard = ({ movie, screenSize }) => {
             src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
             alt={movie.title}
           />
-        ) : (
+        )}
+        {screenSize < 640 && (
           <ImageWithFallback
             fallbackImage={posterFallback}
             className='w-full h-auto object-cover mb-2 rounded-lg'

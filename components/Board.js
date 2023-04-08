@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import MovieCard from './MovieCard';
@@ -7,18 +6,15 @@ import useWindowSize from '../hooks/useWindowSize';
 
 const PAGE_COUNT = 100;
 
-const Board = ({ fetchFunction, queryKey, heading }) => {
+const Board = ({
+  fetchFunction,
+  queryKey,
+  heading,
+  currentPage,
+  setCurrentPage,
+}) => {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
   const { width } = useWindowSize();
-
-  useEffect(() => {
-    const { page } = router.query;
-
-    if (page) {
-      setCurrentPage(parseInt(page, 10));
-    }
-  }, [router.query]);
 
   const { data, isLoading, isError, error, isFetching, isPreviousData } =
     useQuery([queryKey, currentPage], () => fetchFunction(currentPage), {
@@ -27,6 +23,7 @@ const Board = ({ fetchFunction, queryKey, heading }) => {
 
   const handleChange = (event, value) => {
     if (!isPreviousData) {
+      setCurrentPage(value);
       router.push({ query: { ...router.query, page: value } });
     }
   };

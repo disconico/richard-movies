@@ -5,8 +5,8 @@ import Image from 'next/image';
 const Header = () => {
   const router = useRouter();
 
-  const handleMovies = (path) => {
-    router.push({ pathname: path, query: { page: 1 } });
+  const handleMovies = (path, category) => {
+    router.push({ pathname: path, query: { category, page: 1 } });
   };
 
   return (
@@ -15,7 +15,7 @@ const Header = () => {
         <div className='flex items-center'>
           <Link href='/' className='flex items-center gap-4'>
             <Image
-              src='/assets/popcorn.png'
+              src='/assets/images/popcorn.png'
               width={48}
               height={48}
               alt={'Richard Movies Logo'}
@@ -25,18 +25,12 @@ const Header = () => {
         </div>
         <div className='flex gap-4 text-slate-50 items-center'>
           <button
-            onClick={() => handleMovies('/movies')}
+            onClick={() => handleMovies('/movies', 'popular')}
             className='rounded transition-colors duration-200 hover:bg-gray-500 hover:bg-opacity-50 px-4 py-2 h-10
             hover:text-gray-300
             '
           >
-            Popular Movies
-          </button>
-          <button
-            onClick={() => handleMovies('/movies/french')}
-            className='rounded transition-colors duration-200 hover:bg-gray-500 hover:bg-opacity-50 px-4 py-2 h-10      hover:text-gray-300'
-          >
-            French Movies
+            Browse Movies
           </button>
         </div>
       </nav>

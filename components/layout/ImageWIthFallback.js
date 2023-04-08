@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const ImageWithFallback = ({ fallbackImage, alt, src, ...props }) => {
+const ImageWithFallback = ({ fallbackImage, alt, src, width, height, ...props }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -11,6 +11,8 @@ const ImageWithFallback = ({ fallbackImage, alt, src, ...props }) => {
   return (
     <Image
       alt={alt}
+      width={width}
+      height={height}
       onError={setError}
       src={error ? fallbackImage : src}
       {...props}
