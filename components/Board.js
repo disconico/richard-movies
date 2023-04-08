@@ -6,13 +6,7 @@ import useWindowSize from '../hooks/useWindowSize';
 
 const PAGE_COUNT = 100;
 
-const Board = ({
-  fetchFunction,
-  queryKey,
-  heading,
-  currentPage,
-  setCurrentPage,
-}) => {
+const Board = ({ fetchFunction, queryKey, currentPage, setCurrentPage }) => {
   const router = useRouter();
   const { width } = useWindowSize();
 
@@ -33,7 +27,6 @@ const Board = ({
 
   return (
     <div className='max-w-screen-lg mx-auto p-2'>
-      <h1 className='text-4xl font-bold py-4 ml-6'>{heading}</h1>
       <div className='flex flex-wrap justify-evenly gap-4'>
         {data.results &&
           data.results.map((movie) => (

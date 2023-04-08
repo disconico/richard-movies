@@ -1,6 +1,6 @@
 import Board from '../../components/Board';
 import Page from '../../components/layout/Page';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import movieCategories from '../../lib/movieCategories';
 import SelectMenu from '../../components/ui/SelectMenu';
@@ -14,6 +14,11 @@ const MoviesPage = () => {
   const [currentPage, setCurrentPage] = useState(parseInt(initialPage, 10));
 
   const selectedCategory = movieCategories[selectedValue];
+
+  useEffect(() => {
+    setSelectedValue(router.query.category || 'popular');
+    setCurrentPage(parseInt(router.query.page || 1, 10));
+  }, [router.query]);
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
@@ -33,7 +38,8 @@ const MoviesPage = () => {
 
   return (
     <Page title='Home'>
-      <div className='flex justify-center my-4'>
+      <div className='flex justify-between gap-4 my-4 max-w-screen-lg mx-auto'>
+        <h1 className='text-4xl font-bold '>{selectedCategory.heading}</h1>
         <SelectMenu
           value={selectedValue}
           onChange={handleSelectChange}
@@ -43,7 +49,6 @@ const MoviesPage = () => {
       <Board
         fetchFunction={selectedCategory.fetchMovies}
         queryKey={selectedValue}
-        heading={selectedCategory.heading}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
