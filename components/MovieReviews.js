@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useQuery } from 'react-query';
-import { fetchMovieReviews } from '../lib/tmdbAPI';
+import { fetchMovieReviews } from '../lib/tmdbApi';
 import { IoIosThumbsUp, IoIosThumbsDown } from 'react-icons/io';
 
 const MovieReviews = ({ movieId }) => {
