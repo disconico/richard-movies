@@ -11,6 +11,8 @@ const Board = ({ fetchFunction, queryKey, currentPage, setCurrentPage }) => {
   const { data, isLoading, isError, error, isFetching, isPreviousData } =
     useQuery([queryKey, currentPage], () => fetchFunction(currentPage), {
       keepPreviousData: true,
+      retry: 3,
+      retryDelay: 3000,
     });
 
   const handleChange = (event, value) => {

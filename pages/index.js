@@ -28,7 +28,7 @@ export default function Home() {
               go.
             </p>
             <div className='flex gap-4'>
-              <Link href={'/movies'}>
+              <Link href={'movies?category=popular&page=1'}>
                 <button className='rounded bg-gradient-to-r from-red-500 to-red-700 text-white px-2 py-2 h-10 hover:from-white hover:to-white hover:text-red-500 hover:outline hover:outline-1 hover:outline-red-500 flex justify-center w-40 sm:w-44'>
                   Get started
                 </button>

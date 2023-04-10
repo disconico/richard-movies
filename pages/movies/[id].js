@@ -16,6 +16,8 @@ const MovieDetailsPage = () => {
     {
       enabled: !!id,
       staleTime: 1000 * 60 * 60 * 24,
+      retry: 3,
+      retryDelay: 3000,
     }
   );
 

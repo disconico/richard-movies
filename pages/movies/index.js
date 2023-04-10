@@ -25,8 +25,6 @@ const MoviesPage = () => {
   }, [router.query, router]);
 
   const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-    setCurrentPage(1);
     router.push({
       query: { ...router.query, category: event.target.value, page: 1 },
     });
