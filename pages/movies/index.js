@@ -16,9 +16,13 @@ const MoviesPage = () => {
   const selectedCategory = movieCategories[selectedValue];
 
   useEffect(() => {
+    if (!movieCategories[router.query.category]) {
+      router.push('/404');
+    }
+
     setSelectedValue(router.query.category || 'popular');
     setCurrentPage(parseInt(router.query.page || 1, 10));
-  }, [router.query]);
+  }, [router.query, router]);
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
