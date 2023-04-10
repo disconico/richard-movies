@@ -29,12 +29,12 @@ export default function Home() {
             </p>
             <div className='flex gap-4'>
               <Link href={'/movies'}>
-                <button className='rounded bg-gradient-to-r from-red-500 to-red-700 text-white px-2 py-2 h-10 hover:from-white hover:to-white hover:text-red-500 hover:outline hover:outline-1 hover:outline-red-500 flex justify-center w-44'>
+                <button className='rounded bg-gradient-to-r from-red-500 to-red-700 text-white px-2 py-2 h-10 hover:from-white hover:to-white hover:text-red-500 hover:outline hover:outline-1 hover:outline-red-500 flex justify-center w-40 sm:w-44'>
                   Get started
                 </button>
               </Link>
               <Link href={'movies?category=french&page=1'}>
-                <button className='rounded transition-colors duration-200 hover:bg-gray-500 hover:bg-opacity-50 outline outline-1 outline-gray-500  px-2  py-2 h-10 flex justify-center gap-2 items-center w-44'>
+                <button className='rounded transition-colors duration-200 hover:bg-gray-500 hover:bg-opacity-50 outline outline-1 outline-gray-500  px-2  py-2 h-10 flex justify-center gap-2 items-center  w-40 sm:w-44'>
                   French Movies{' '}
                   <span>
                     <BsArrowRightShort />

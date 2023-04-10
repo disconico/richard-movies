@@ -37,9 +37,11 @@ const MoviesPage = () => {
   }
 
   return (
-    <Page title='Home'>
-      <div className='flex justify-between gap-4 my-4 max-w-screen-lg mx-auto'>
-        <h1 className='text-4xl font-bold '>{selectedCategory.heading}</h1>
+    <Page title={selectedCategory.heading}>
+      <div className='flex flex-col sm:flex-row justify-between gap-4 px-4 sm:px-8 my-4 max-w-screen-lg mx-auto items-center'>
+        <h1 className='  text-2xl md:text-4xl font-bold '>
+          {selectedCategory.heading}
+        </h1>
         <SelectMenu
           value={selectedValue}
           onChange={handleSelectChange}
