@@ -26,19 +26,23 @@ const Board = ({
   if (isLoading) return <div></div>;
   if (isError) return <div>{error.message}</div>;
 
-  const pages = Math.min(MAX_PAGE_COUNT, data.total_pages);
+  const pages = data ? Math.min(MAX_PAGE_COUNT, data.total_pages) : 0;
 
   return (
     <div className='max-w-screen-lg mx-auto p-2'>
       <div className='flex flex-wrap justify-evenly gap-4'>
-        {data.results &&
+        {data &&
           data.results.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
       </div>
       <div className='flex justify-center items-center space-x-4 my-4'>
-        {isFetching ? <span> Loading...</span> : null}{' '}
-        <Pagination count={pages} page={currentPage} onChange={handleChange} />
+        <Pagination
+          count={pages}
+          page={currentPage}
+          onChange={handleChange}
+          disabled={isFetching}
+        />
       </div>
     </div>
   );
