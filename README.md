@@ -1,3 +1,5 @@
+# Richard Movies
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -12,23 +14,29 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Display popular movies with relevant information for users to browse.
+- Filter movies by category: Popular, French, Top Rated, and Now Playing.
+- Show detailed movie information on individual movie pages, including an overview, release date, and user ratings.
+- Display movie reviews on individual movie pages, allowing users to read both positive and negative reviews.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Possible improvements
 
-## Learn More
+- Implement user authentication to allow users to create profiles.
+- Add a feature for users to save their favorite movies to their profiles.
+- Allow users to rate movies and submit their own reviews.
+- Add search functionality to help users find specific movies more easily.
+- Enhance the filter options to include more categories or languages.
 
-To learn more about Next.js, take a look at the following resources:
+## The main components of the app include:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- /movies/index: Main movie listing page with category selection and movie board.
+- /movies/[id]: Individual movie detail pages with movie information and reviews.
+- /components/board: Movie board component to display movie cards and pagination.
+- tmdbAPI.js: Helper functions for fetching movie data from the TMDB API.
+- movieCategories.js: Defines movie categories and their corresponding fetch functions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## API
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- This app uses the The Movie Database API to fetch movie information and reviews.
